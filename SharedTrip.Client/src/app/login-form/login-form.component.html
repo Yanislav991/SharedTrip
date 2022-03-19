@@ -1,0 +1,18 @@
+<div class="container">
+    <section class="login-form">
+        <h2>Login</h2>
+        <form id="login" [formGroup]="loginForm" (ngSubmit)="login()">
+            <div class="field">
+                <label for="username">Username:</label>
+                <input placeholder="Username..." type="text" formControlName="username">
+                <p *ngIf="username!.errors?.['required'] && username!.touched" class="validation">Username is required</p>
+            </div>
+            <div class="field">
+                <label for="password">Password:</label>
+                <input placeholder="Your super strong password..." type="password" formControlName="password">
+                <p *ngIf="password!.errors?.['required'] && password!.touched" class="validation">Password is required</p>
+            </div>
+            <button type="submit" id="submitBtn">Login</button>
+        </form>
+    </section>
+</div>

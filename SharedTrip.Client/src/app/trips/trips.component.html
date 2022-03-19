@@ -1,0 +1,70 @@
+<section class="table-container">
+    <table class="fl-table">
+        <thead>
+            <tr>
+                <th>
+                    <h2>Id</h2>
+                </th>
+                <th>
+                    <h2>Start Point</h2>
+                </th>
+                <th>
+                    <h2>End Point</h2>
+                </th>
+                <th>
+                    <h2>Date</h2>
+                </th>
+                <th>
+                    <h2>Free seats</h2>
+                </th>
+                <th>
+                    <h2>Place for luggage</h2>
+                </th>
+                <th>
+                    <h2>Price</h2>
+                </th>
+                <th>
+                    <h2>Details</h2>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let trip of tripsRecords">
+                <td>
+                    {{trip.id}}
+                </td>
+                <td>
+                    {{trip.startPoint}}
+                </td>
+                <td>
+                    {{trip.endPoint}}
+                </td>
+                <td>
+                    {{trip.date}}
+                </td>
+                <td>
+                    {{trip.freeSeats}}
+                </td>
+                <td>
+                    {{trip.placeForLuggage}}
+                </td>
+                <td>
+                    {{trip.price}}
+                </td>
+                <td>
+                    <button>View</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+<div class="pagination">
+    <a href="#">&laquo;</a>
+    <a href="#">1</a>
+    <a href="#">2</a>
+    <a href="#">3</a>
+    <a href="#">4</a>
+    <a href="#">5</a>
+    <a href="#">6</a>
+    <a href="#">&raquo;</a>
+</div>

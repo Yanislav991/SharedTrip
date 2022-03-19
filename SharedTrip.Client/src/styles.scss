@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,800;0,900;1,300;1,500&display=swap');
+@import url("https://use.fontawesome.com/releases/v5.15.4/css/all.css");
+:root {
+    --white: #E5BFC9;
+    --action: #ADB428;
+    --dark: #66383F;
+    --blue: #439497;
+    --red: #af5255;
+    --text: #212121;
+    --action-trans: rgb(173, 180, 40, 0.7);
+    --dark-trans: rgb(102, 56, 63, 0.7)
+}
+
+input {
+    outline: none;
+}
+
+html {
+    background: url(./background.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: 'Montserrat', 'Helvetica';
+}
+
+*,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}

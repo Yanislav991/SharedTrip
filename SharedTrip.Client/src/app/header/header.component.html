@@ -1,0 +1,32 @@
+<nav id="nav">
+    <section class="logo">
+        <a class="logo-link" href="">
+            <h1 class="logo">Shared<span>Trip <i class="fas fa-car"></i></span></h1>
+        </a>
+    </section>
+    <section class="navi">
+        <ul class="navi-list">
+            <li class="navi-item" *ngIf="isLogged">
+                <a href="javascript:void(0)">Trips</a>
+            </li>
+            <li class="navi-item" *ngIf="isLogged">
+                <a href="javascript:void(0)">News</a>
+            </li>
+            <li class=" navi-item " *ngIf="isLogged">
+                <a href="javascript:void(0) ">Chat</a>
+            </li>
+            <li class="navi-item ">
+                <a href="javascript:void(0) " *ngIf="isLogged">Profile</a>
+            </li>
+            <li class="navi-item ">
+                <a href="javascript:void(0) " [routerLink]="['./']" (click)="logout()" *ngIf="isLogged">Logout</a>
+            </li>
+            <li class="navi-item ">
+                <a href="javascript:void(0) " [routerLink]="['./login']" *ngIf="!isLogged">Login</a>
+            </li>
+            <li class="navi-item ">
+                <a href="javascript:void(0) " [routerLink]="['./register']" *ngIf="!isLogged">Register</a>
+            </li>
+        </ul>
+    </section>
+</nav>
