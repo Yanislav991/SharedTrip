@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from 'services/auth.service';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/services/auth.service';
 
 @Component({
   selector: 'app-login-form',
@@ -9,7 +10,7 @@ import { AuthService } from 'services/auth.service';
 })
 export class LoginFormComponent implements OnInit {
   loginForm:FormGroup;
-  constructor( private fb: FormBuilder, private auth:AuthService) {
+  constructor( private fb: FormBuilder, private auth:AuthService, private router:Router) {
     this.loginForm=this.fb.group({
       'username':[[''], [Validators.required]],
       'password':[[''], [Validators.required]]
@@ -21,6 +22,7 @@ export class LoginFormComponent implements OnInit {
   login(){
     this.auth.login(this.loginForm.value).subscribe(data=>{
       this.auth.saveToken(data.token)
+      this.router.navigate(['/trips'])
     })
   }
   

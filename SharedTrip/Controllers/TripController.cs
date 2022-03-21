@@ -19,6 +19,7 @@ namespace SharedTrip.Controllers
         }
         [HttpGet]
         [Route("all")]
+        [Authorize]
         public List<TripViewModel> GetTrips()
         {
             return tripsService.GetTrips();

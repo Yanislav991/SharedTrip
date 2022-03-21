@@ -7,7 +7,7 @@
     <section class="navi">
         <ul class="navi-list">
             <li class="navi-item" *ngIf="isLogged">
-                <a href="javascript:void(0)">Trips</a>
+                <a href="javascript:void(0)" [routerLink]="['./trips']">Trips</a>
             </li>
             <li class="navi-item" *ngIf="isLogged">
                 <a href="javascript:void(0)">News</a>

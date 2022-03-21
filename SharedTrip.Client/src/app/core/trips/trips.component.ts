@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ITrip } from 'interfaces/ITrip';
-import { TripsService } from 'services/trips.service';
+import { ITrip } from 'src/interfaces/ITrip';
+import { TripsService } from 'src/services/trips.service';
 
 @Component({
   selector: 'app-trips',

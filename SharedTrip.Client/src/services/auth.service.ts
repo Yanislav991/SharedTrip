@@ -22,7 +22,7 @@ export class AuthService {
   saveToken(token:string){
     localStorage.setItem('token', token);
   }
-  getToken(){
-    return localStorage.getItem('token');
+  getToken():string{
+    return localStorage.getItem('token')?? '';
   }
 }

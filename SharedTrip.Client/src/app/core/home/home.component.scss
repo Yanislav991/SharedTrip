@@ -1,0 +1,58 @@
+.home {
+    width: 60%;
+    margin: 2rem 2rem;
+    padding: 2rem;
+    background-color: var(--action-trans);
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 18px;
+}
+
+.home-head {
+    color: var(--text);
+    font-family: 'Montserat';
+    font-weight: 600;
+    margin: auto;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.home-text {
+    color: var(--text);
+    font-family: 'Montserat';
+    margin: auto;
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.auth {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.log,
+.reg {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.log>button,
+.reg>button {
+    width: 100%;
+    background-color: var(--text);
+    color: var(--action);
+    text-align: center;
+    padding: 0.3rem;
+    margin-bottom: 0.5rem;
+    border-radius: 18px;
+    border: none;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+#register:hover,
+#login:hover {
+    transform: scale(1.1);
+}

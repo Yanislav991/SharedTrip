@@ -1,32 +1,27 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { AuthService } from 'services/auth.service';
-
+import { AuthService } from 'src/services/auth.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { RegisterFormComponent } from './register-form/register-form.component';
-import {HttpClientModule} from '@angular/common/http';
-import { LoginFormComponent } from './login-form/login-form.component';
-import { TripsComponent } from './trips/trips.component'
-import { TripsService } from 'services/trips.service';
+import { HttpClientModule } from '@angular/common/http';
+import { TripsService } from 'src/services/trips.service';
+import { CoreModule } from './core/core.module';
+import { UsersModule } from './users/users.module';
+import { AuthGuard } from 'src/guards/auth.guard';
+import { NotAuthGuard } from 'src/guards/not-auth.guard';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderComponent,
-    RegisterFormComponent,
-    LoginFormComponent,
-    TripsComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
+    CoreModule,
     AppRoutingModule,
-    ReactiveFormsModule,
+    UsersModule,
     HttpClientModule
   ],
-  providers: [AuthService, TripsService],
+  providers: [AuthService, TripsService, AuthGuard, NotAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
