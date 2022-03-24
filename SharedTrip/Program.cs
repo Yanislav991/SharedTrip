@@ -19,7 +19,14 @@ builder.Services.AddDbContext<SharedTripDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddTransient<ITripsService, TripService>();
 
-builder.Services.AddIdentity<User, IdentityRole>()
+builder.Services.AddIdentity<User, IdentityRole>(x =>
+{
+    x.Password.RequireDigit = false;
+    x.Password.RequiredLength = 6;
+    x.Password.RequireNonAlphanumeric = false;
+    x.Password.RequireUppercase = false;
+    x.Password.RequireLowercase = false;
+})
     .AddEntityFrameworkStores<SharedTripDbContext>()
     .AddDefaultTokenProviders();
 

@@ -11,6 +11,7 @@
                 <label for="password">Password:</label>
                 <input placeholder="Your super strong password..." type="password" formControlName="password">
                 <p *ngIf="password!.errors?.['required'] && password!.touched" class="validation">Password is required</p>
+                <p *ngIf="password!.errors?.['minlength'] && password!.touched" class="validation">Password should contain at lease 6 characters!</p>
             </div>
             <button type="submit" id="submitBtn">Login</button>
         </form>

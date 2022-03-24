@@ -14,7 +14,7 @@ namespace SharedTrip.Services
         }
         public List<TripViewModel> GetTrips()
         {
-            return this.data.Trips.Take(5).Select(x => new TripViewModel
+            return this.data.Trips.Select(x => new TripViewModel
             {
                 Id = x.Id,
                 CarImageUrl =x.CarImageUrl,
