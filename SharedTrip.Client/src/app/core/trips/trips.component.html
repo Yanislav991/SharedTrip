@@ -1,30 +1,30 @@
 <section class="table-container">
     <table class="fl-table">
         <thead>
-            <tr>
+            <tr (click)="onClick($event)">
                 <th>
-                    <h2>Id</h2>
+                    Id
                 </th>
                 <th>
-                    <h2>Start Point</h2>
+                    Start Point
                 </th>
                 <th>
-                    <h2>End Point</h2>
+                    End Point
                 </th>
                 <th>
-                    <h2>Date</h2>
+                    Date
                 </th>
                 <th>
-                    <h2>Free seats</h2>
+                    Free seats
                 </th>
                 <th>
-                    <h2>Place for luggage</h2>
+                    Place for luggage
                 </th>
                 <th>
-                    <h2>Price</h2>
+                    Price
                 </th>
                 <th>
-                    <h2>Details</h2>
+                    Details
                 </th>
             </tr>
         </thead>
@@ -59,5 +59,5 @@
     </table>
 </section>
 <div class="pagination">
-    <a *ngFor="let number of recordsPages" (click)="pageHandler($event)" [attr.data-page]="[number]">{{number}}</a>
+    <a *ngFor="let number of recordsPages" (click)="onPageClick($event)" [attr.data-page]="[number]">{{number}}</a>
 </div>
