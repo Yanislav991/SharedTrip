@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { EmptyError } from 'rxjs';
 import { ITrip } from 'src/interfaces/ITrip';
 import { TripsService } from 'src/services/trips.service';
@@ -9,6 +9,7 @@ import { TripsService } from 'src/services/trips.service';
   styleUrls: ['./trips.component.scss']
 })
 export class TripsComponent {
+  @ViewChild('search') search:any;
   public tripsRecords!: Array<ITrip>;
   public recordsPages!: Array<number>;
   private data!: Array<ITrip>
@@ -25,11 +26,23 @@ export class TripsComponent {
   constructor(private trips: TripsService) {
     this.loadData();
   }
+  
 
-  onClick(event: MouseEvent) {
+  onKey(event: any) {
+    this.data = this.filterByValue(this.data, event.target?.value)
+    this.tripsRecords = this.applyPaging(this.page.start, this.page.end);
+    this.populatePages();
+  }
+  refresh(){
+    this.search.nativeElement.value = ' '
+    this.loadData();
+  }
+  filterByValue(array:any, value:any) {
+    return array.filter((data:any) =>  JSON.stringify(data).toLowerCase().indexOf(value.toLowerCase()) !== -1);
+  }
+  sortData(event: MouseEvent) {
     let element = event.target as HTMLElement;
     let sortTerm = this.lowerFirstLetter(this.camalize(element.textContent!)).trim();
-    debugger
     if (this.currentSort.field == "") {
       this.currentSort.field = sortTerm;
       this.currentSort.order = "asc"
@@ -55,7 +68,7 @@ export class TripsComponent {
       this.data = data;
       this.tripsRecords = data.slice(0, this.recordsPerPage);
       this.recordsPages = [];
-      this.populatePages(this.recordsPages);
+      this.populatePages();
     });
   }
 
@@ -74,7 +87,8 @@ export class TripsComponent {
   camalize(str: string) {
     return str.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase());
   }
-  populatePages(recordsPages: Array<number>) {
+  populatePages() {
+    this.recordsPages = [];
     let counter = 1;
     this.recordsPages.push(counter);
     for (let i = 1; i <= this.tripsRecords.length; i++) {

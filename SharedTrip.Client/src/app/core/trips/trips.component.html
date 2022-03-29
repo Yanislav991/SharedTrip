@@ -1,7 +1,11 @@
+<section class="search">
+    <input (keyup)="onKey($event)" type="text" name="search" placeholder="Enter a search term ..." #search id="searchTerm">
+    <button (click)="refresh()" id="refresh">Clear&Refresh</button>
+</section>
 <section class="table-container">
     <table class="fl-table">
         <thead>
-            <tr (click)="onClick($event)">
+            <tr (click)="sortData($event)">
                 <th>
                     Id
                 </th>
