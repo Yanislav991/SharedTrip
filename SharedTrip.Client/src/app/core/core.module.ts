@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
 import { TripsComponent } from './trips/trips.component';
 import { HomeComponent } from './home/home.component';
+import { BooleanPipe } from 'src/pipes/boolean.pipe';
 
 
 
@@ -13,7 +14,8 @@ import { HomeComponent } from './home/home.component';
     HeaderComponent, 
     FooterComponent,
     TripsComponent,
-    HomeComponent
+    HomeComponent,
+    BooleanPipe
 ],
   imports: [
     CommonModule,

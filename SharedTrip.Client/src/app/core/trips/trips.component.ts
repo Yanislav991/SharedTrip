@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { EmptyError } from 'rxjs';
 import { ITrip } from 'src/interfaces/ITrip';
 import { TripsService } from 'src/services/trips.service';
@@ -23,7 +24,7 @@ export class TripsComponent {
     order: ""
   }
 
-  constructor(private trips: TripsService) {
+  constructor(private trips: TripsService, private router:Router) {
     this.loadData();
   }
   
@@ -57,7 +58,12 @@ export class TripsComponent {
     else if (this.currentSort.field == sortTerm && this.currentSort.order == "desc") {
       this.currentSort.field = '';
       this.currentSort.order = '';
-      this.loadData()
+    }
+    else if(this.currentSort.field != sortTerm && this.currentSort.field != ""){
+      //@ts-ignore
+      this.data.sort((a, b) => (a[sortTerm] < b[sortTerm]) ? -1 : 1);
+      this.currentSort.field = sortTerm;
+      this.currentSort.order = "asc"
     }
 
     this.tripsRecords = this.applyPaging(this.page.start, this.page.end);
@@ -66,9 +72,15 @@ export class TripsComponent {
   loadData() {
     this.trips.getAllTrips().subscribe(data => {
       this.data = data;
+      console.log(data.status)
       this.tripsRecords = data.slice(0, this.recordsPerPage);
       this.recordsPages = [];
       this.populatePages();
+    }, err=>{
+      if(err.status==401){
+        this.router.navigate(['/']);
+        localStorage.clear();
+      }
     });
   }
 

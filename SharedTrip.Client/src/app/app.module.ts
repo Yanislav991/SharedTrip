@@ -9,6 +9,7 @@ import { CoreModule } from './core/core.module';
 import { UsersModule } from './users/users.module';
 import { AuthGuard } from 'src/guards/auth.guard';
 import { NotAuthGuard } from 'src/guards/not-auth.guard';
+import { BooleanPipe } from 'src/pipes/boolean.pipe'
 
 @NgModule({
   declarations: [

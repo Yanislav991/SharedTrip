@@ -1,8 +1,7 @@
-<section class="search">
+<section class="table-container">
     <input (keyup)="onKey($event)" type="text" name="search" placeholder="Enter a search term ..." #search id="searchTerm">
     <button (click)="refresh()" id="refresh">Clear&Refresh</button>
-</section>
-<section class="table-container">
+    <a [routerLink]="['./trips/create']" id="create">Create</a>
     <table class="fl-table">
         <thead>
             <tr (click)="sortData($event)">
@@ -44,13 +43,13 @@
                     {{trip.endPoint}}
                 </td>
                 <td>
-                    {{trip.date}}
+                    {{trip.date | date}}
                 </td>
                 <td>
                     {{trip.freeSeats}}
                 </td>
                 <td>
-                    {{trip.placeForLuggage}}
+                    {{trip.placeForLuggage | boolean}}
                 </td>
                 <td>
                     {{trip.price}}
