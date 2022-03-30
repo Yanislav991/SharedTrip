@@ -23,7 +23,14 @@ namespace SharedTrip.Controllers
         public List<TripViewModel> GetTrips()
         {
             return tripsService.GetTrips();
-
+        }
+        [HttpPost]
+        [Route("create")]
+        [Authorize]
+        public IActionResult Create(TripViewModel trip)
+        {
+            //return tripsService.GetTrips();
+            return Content("");
         }
 
     }

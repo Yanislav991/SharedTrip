@@ -9,7 +9,8 @@ import { CoreModule } from './core/core.module';
 import { UsersModule } from './users/users.module';
 import { AuthGuard } from 'src/guards/auth.guard';
 import { NotAuthGuard } from 'src/guards/not-auth.guard';
-import { BooleanPipe } from 'src/pipes/boolean.pipe'
+import { TripModule } from './trip/trip.module';
+import { CreateTripComponent } from './trip/create-trip/create-trip.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { BooleanPipe } from 'src/pipes/boolean.pipe'
     CoreModule,
     AppRoutingModule,
     UsersModule,
+    TripModule,
     HttpClientModule
   ],
   providers: [AuthService, TripsService, AuthGuard, NotAuthGuard],

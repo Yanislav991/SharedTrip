@@ -1,7 +1,7 @@
 <section class="table-container">
     <input (keyup)="onKey($event)" type="text" name="search" placeholder="Enter a search term ..." #search id="searchTerm">
     <button (click)="refresh()" id="refresh">Clear&Refresh</button>
-    <a [routerLink]="['./trips/create']" id="create">Create</a>
+    <a [routerLink]="['/trips/create']" id="create">Create</a>
     <table class="fl-table">
         <thead>
             <tr (click)="sortData($event)">

@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { EmptyError } from 'rxjs';
 import { ITrip } from 'src/interfaces/ITrip';
 import { TripsService } from 'src/services/trips.service';
 

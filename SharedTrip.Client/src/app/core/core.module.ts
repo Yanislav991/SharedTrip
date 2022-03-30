@@ -3,9 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
-import { TripsComponent } from './trips/trips.component';
 import { HomeComponent } from './home/home.component';
-import { BooleanPipe } from 'src/pipes/boolean.pipe';
 
 
 
@@ -13,9 +11,7 @@ import { BooleanPipe } from 'src/pipes/boolean.pipe';
   declarations: [
     HeaderComponent, 
     FooterComponent,
-    TripsComponent,
     HomeComponent,
-    BooleanPipe
 ],
   imports: [
     CommonModule,
@@ -23,7 +19,6 @@ import { BooleanPipe } from 'src/pipes/boolean.pipe';
   ],
   exports:[
     HeaderComponent, 
-    FooterComponent,
-    TripsComponent]
+    FooterComponent]
 })
 export class CoreModule { }
