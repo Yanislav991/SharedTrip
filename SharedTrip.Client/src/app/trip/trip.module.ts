@@ -5,6 +5,7 @@ import { TripsComponent } from './trips/trips.component';
 import { BooleanPipe } from 'src/pipes/boolean.pipe';
 import { CreateTripComponent } from './create-trip/create-trip.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TripDetailsComponent } from './trip-details/trip-details.component';
 
 
 
@@ -12,7 +13,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [
     TripsComponent,
     CreateTripComponent,
-    BooleanPipe
+    BooleanPipe,
+    TripDetailsComponent
   ],
   imports: [
     CommonModule,

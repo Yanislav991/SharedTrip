@@ -22,7 +22,7 @@ export class LoginFormComponent implements OnInit {
   login(){
     this.auth.login(this.loginForm.value).subscribe(data=>{
       this.auth.saveToken(data.token)
-      this.router.navigate(['/trips'])
+      this.router.navigate(['/trips/all'])
     })
   }
   

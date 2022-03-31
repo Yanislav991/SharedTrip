@@ -100,13 +100,9 @@ export class TripsComponent {
   }
   populatePages() {
     this.recordsPages = [];
-    let counter = 1;
-    this.recordsPages.push(counter);
-    for (let i = 1; i <= this.tripsRecords.length; i++) {
-      if (i % 5 == 0) {
-        counter++
-        this.recordsPages.push(counter++);
-      }
+    let pagesCount = Math.ceil(this.data.length/this.recordsPerPage);
+    for (let i = 1; i <= pagesCount; i++) {
+      this.recordsPages.push(i);
     }
   }
 

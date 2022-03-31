@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SharedTrip.Data;
+using SharedTrip.Data.Model;
+using SharedTrip.Models.Identity;
 using SharedTrip.Models.Trips;
 using SharedTrip.Services.Contracts;
 
@@ -11,11 +14,11 @@ namespace SharedTrip.Controllers
     public class TripController : ControllerBase
     {
         private readonly ITripsService tripsService;
-        private readonly SharedTripDbContext data;
-        public TripController(ITripsService tripsService, SharedTripDbContext data)
+        private readonly UserManager<User> userManager;
+        public TripController(ITripsService tripsService, UserManager<User> userManager)
         {
             this.tripsService = tripsService;
-            this.data = data;
+            this.userManager = userManager;
         }
         [HttpGet]
         [Route("all")]
@@ -27,10 +30,33 @@ namespace SharedTrip.Controllers
         [HttpPost]
         [Route("create")]
         [Authorize]
-        public IActionResult Create(TripViewModel trip)
+        public async Task<IActionResult> Create(TripViewModel trip)
         {
-            //return tripsService.GetTrips();
-            return Content("");
+            var name = this.User.Identity.Name;
+            var user = await this.userManager.FindByNameAsync(name);
+            if (user == null)
+            {
+                return StatusCode(StatusCodes.Status401Unauthorized, new Response { Status = "Error", Message = "Invalid User!" });
+            }
+            if (!ModelState.IsValid)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Error", Message = "Invalid Trip!" });
+            }
+            await this.tripsService.Create(trip, user);
+            return Ok(new Response { Status = "Success", Message = "Trip created successfully!" });
+        }
+        [HttpGet("details/{id}")]
+        public async Task<ActionResult<TripViewModel>> Details(int id)
+        {
+            var name = this.User.Identity.Name;
+            var user = await this.userManager.FindByNameAsync(name);
+            if (user == null)
+            {
+                return StatusCode(StatusCodes.Status401Unauthorized, new Response { Status = "Error", Message = "Invalid User!" });
+            }
+            var trip = this.tripsService.FindById(id);
+            if (trip == null) return NotFound();
+            return trip;
         }
 
     }

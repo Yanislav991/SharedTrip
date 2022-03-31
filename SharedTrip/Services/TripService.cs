@@ -1,4 +1,5 @@
 ﻿using SharedTrip.Data;
+using SharedTrip.Data.Model;
 using SharedTrip.Models.Trips;
 using SharedTrip.Services.Contracts;
 
@@ -26,7 +27,43 @@ namespace SharedTrip.Services
                 Price= x.Price,
                 StartPoint =x.StartPoint
             }).ToList();
+        }
+        public async Task Create(TripViewModel trip, User user)
+        {
+            var validTrip = new Trip()
+            {
+                User = user,
+                UserId = user.Id,   
+                CarImageUrl = trip.CarImageUrl,
+                Date = trip.Date,
+                Description = trip.Description,
+                EndPoint = trip.EndPoint,
+                FreeSeats = trip.FreeSeats,
+                PlaceForLuggage = trip.PlaceForLuggage,
+                Price = trip.Price,
+                StartPoint = trip.StartPoint,
 
+            };
+            await data.Trips.AddAsync(validTrip);
+            await data.SaveChangesAsync();
+        }
+
+        public TripViewModel FindById(int id)
+        {
+            var trip =  data.Trips.FirstOrDefault(x=>x.Id == id);
+            return new TripViewModel()
+            {
+                Id = trip.Id,
+                CarImageUrl = trip.CarImageUrl,
+                Date = trip.Date,
+                Description = trip.Description,
+                EndPoint = trip.EndPoint,
+                FreeSeats = trip.FreeSeats,
+                PlaceForLuggage = trip.PlaceForLuggage,
+                Price = trip.Price,
+                StartPoint = trip.StartPoint,
+                //UserName = this.data.Users.FirstOrDefault(x => x.Id == trip.UserId).UserName
+            };
         }
     }
 }

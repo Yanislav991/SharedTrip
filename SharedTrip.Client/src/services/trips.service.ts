@@ -11,15 +11,18 @@ import { AuthService } from './auth.service';
 export class TripsService {
   allTripsPath = environment.apiUrl + 'api/trip/all';
   createTripsPath = environment.apiUrl + 'api/trip/create';
+  getDetailsTripPath = environment.apiUrl + 'api/trip/details/';
+  token:string = this.auth.getToken();
+  headers = new HttpHeaders({'Authorization':`Bearer ${this.token}`});
+
   constructor(private http: HttpClient, private auth:AuthService) { }
   getAllTrips() : Observable<any>{
-    var token:string = this.auth.getToken();
-    const headers = new HttpHeaders({'Authorization':`Bearer ${token}`});
-    return this.http.get(this.allTripsPath,{headers:headers})
+    return this.http.get(this.allTripsPath,{headers:this.headers})
+  }
+  getTripById(id:number):Observable<any>{
+    return this.http.get(this.getDetailsTripPath + id,{headers:this.headers})
   }
   create(data:any): Observable<any>{
-    var token:string = this.auth.getToken();
-    const headers = new HttpHeaders({'Authorization':`Bearer ${token}`});
-    return this.http.post(this.createTripsPath,data,{headers:headers})
+    return this.http.post(this.createTripsPath,data,{headers:this.headers})
   }
 }
