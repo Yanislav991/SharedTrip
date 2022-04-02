@@ -51,6 +51,12 @@ namespace SharedTrip.Services
         public TripViewModel FindById(int id)
         {
             var trip =  data.Trips.FirstOrDefault(x=>x.Id == id);
+            var userName = "Unknown";
+            var user = this.data.Users.FirstOrDefault(x => x.Id == trip.UserId);
+            if(user != null)
+            {
+                userName = user.UserName;
+            }
             return new TripViewModel()
             {
                 Id = trip.Id,
@@ -62,7 +68,7 @@ namespace SharedTrip.Services
                 PlaceForLuggage = trip.PlaceForLuggage,
                 Price = trip.Price,
                 StartPoint = trip.StartPoint,
-                //UserName = this.data.Users.FirstOrDefault(x => x.Id == trip.UserId).UserName
+                UserName = userName
             };
         }
     }

@@ -1,1 +1,23 @@
-<p>trip-details works!</p>
+<section class="details">
+    <div class="imgContainer">
+        <img [src]="currTrip.carImageUrl" alt="">
+    </div>
+    <section class="info">
+        <div class="left">
+            <p class="informationLabel"><strong>Date: </strong>{{currTrip.date}}</p>
+            <p class="informationLabel"><strong>Start Point: </strong>{{currTrip.startPoint}}</p>
+            <p class="informationLabel"><strong>End Point: </strong>{{currTrip.endPoint}}</p>
+            <p class="informationLabel"><strong>Free seats: </strong>{{currTrip.freeSeats}}</p>
+            <p class="informationLabel"><strong>Price: </strong>{{currTrip.price}}</p>
+        </div>
+        <div class="right">
+            <p class="informationLabel"><strong>User: </strong>{{currTrip.userName}}</p>
+            <p class="informationLabel"><strong>Is there place for luggage: </strong>{{currTrip.placeForLuggage}}</p>
+            <p class="informationLabel"><strong>Additional information: <br/> </strong>{{currTrip.description}}</p>
+        </div>
+    </section>
+    <section class="nav">
+        <a id="edit">Edit</a>
+        <a id="back">Back to the Trips!</a>
+    </section>
+</section>

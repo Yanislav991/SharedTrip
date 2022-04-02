@@ -7,4 +7,6 @@ export interface ITrip {
     placeForLuggage: boolean;
     freeSeats: number;
     startPoint: string;
+    carImageUrl: string;
+    userName:string;
 }
