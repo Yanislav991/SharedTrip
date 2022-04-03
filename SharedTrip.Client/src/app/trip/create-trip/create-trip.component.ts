@@ -28,7 +28,6 @@ export class CreateTripComponent implements OnInit {
     this.createTripForm.get('placeForLuggage')!.setValue(false);
   }
   createTrip() {
-    console.log(this.createTripForm.get('placeForLuggage'))
     if(!this.createTripForm.valid){
       this.shared.fireValidation(this.createTripForm);
       return;

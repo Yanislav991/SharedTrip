@@ -17,7 +17,7 @@
         </div>
     </section>
     <section class="nav">
-        <a id="edit">Edit</a>
-        <a id="back">Back to the Trips!</a>
+        <a id="edit" [routerLink]="['/trips/edit', currTrip.id]">Edit</a>
+        <a id="back" [routerLink]="['/trips/all']">Back to the Trips!</a>
     </section>
 </section>

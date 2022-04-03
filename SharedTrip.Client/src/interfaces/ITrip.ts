@@ -1,4 +1,5 @@
 export interface ITrip {
+    [key: string]: any;
     id:number;
     date: Date;
     description: string;

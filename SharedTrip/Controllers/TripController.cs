@@ -42,10 +42,11 @@ namespace SharedTrip.Controllers
             {
                 return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Error", Message = "Invalid Trip!" });
             }
-            await this.tripsService.Create(trip, user);
+            await this.tripsService.CreateAsync(trip, user);
             return Ok(new Response { Status = "Success", Message = "Trip created successfully!" });
         }
         [HttpGet("details/{id}")]
+        [Authorize]
         public async Task<ActionResult<TripViewModel>> Details(int id)
         {
             var name = this.User.Identity.Name;
@@ -57,6 +58,37 @@ namespace SharedTrip.Controllers
             var trip = this.tripsService.FindById(id);
             if (trip == null) return NotFound();
             return trip;
+        }
+        [HttpPut]
+        [Route("edit")]
+        [Authorize]
+        public async Task<IActionResult> Edit(TripViewModel trip)
+        {
+            var name = this.User.Identity.Name;
+            var user = await this.userManager.FindByNameAsync(name);
+            if (user == null)
+            {
+                return StatusCode(StatusCodes.Status401Unauthorized, new Response { Status = "Error", Message = "Please login!" });
+            }
+            if (!ModelState.IsValid)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Error", Message = "Invalid Trip!" });
+            }
+            var response = await this.tripsService.EditAsync(trip, name);
+            if (response == "invalidUser")
+            {
+                return StatusCode(StatusCodes.Status401Unauthorized, new Response { Status = "Error", Message = "Invalid User!" });
+
+            }
+            return Ok(new Response { Status = "Success", Message = "Trip created successfully!" });
+        }
+        [HttpGet("userId/{id}")]
+        [Authorize]
+        public async Task<IActionResult> GetUserId(int id)
+        {
+            var trip = this.tripsService.FindById(id);
+            var name = this.User.Identity.Name;
+            return Ok(new { isOwner = trip.UserName == name });
         }
 
     }

@@ -45,4 +45,23 @@ strong {
 }
 
 #edit,
-#back {}
+#back {
+    display: inline-block;
+    outline: 0;
+    border: none;
+    cursor: pointer;
+    padding: 12px;
+    margin-left: 30px;
+    border-radius: 50px;
+    font-size: 18px;
+    background-color: var(--text);
+    font-weight: 500;
+    margin-top: 20px;
+    color: var(--action);
+    transition: all .2s ease-in-out;
+}
+
+#back:hover,
+#edit:hover {
+    transform: scale(1.1);
+}

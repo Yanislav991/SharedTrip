@@ -1,0 +1,46 @@
+<div class="container">
+    <section class="create-trip-form">
+        <h4>Make the needed changes to your trip!</h4>
+        <form id="create" [formGroup]="editTripForm" (ngSubmit)="editTrip()" action="#">
+            <div class="field">
+                <label for="startPoint">Start Point:</label>
+                <input placeholder="Start Point..." type="text" formControlName="startPoint">
+                <p *ngIf="(startPoint!.errors?.['required'] || startPoint?.errors?.['minlength'] || startPoint?.errors?.['maxlength']) && startPoint!.touched" class="validation">Start Point is required and it's length should be between 3 - 25!</p>
+            </div>
+            <div class="field">
+                <label for="endPoint">End Point:</label>
+                <input placeholder="End Point..." type="text" formControlName="endPoint">
+                <p *ngIf="(endPoint!.errors?.['required'] || endPoint?.errors?.['minlength'] || endPoint?.errors?.['maxlength']) && endPoint!.touched" class="validation">End Point is required and it's length should be between 3 - 25!</p>
+            </div>
+            <div class="field">
+                <label for="date">Date:</label>
+                <input placeholder="When are you travelling.." type="date" formControlName="date">
+                <p *ngIf="(endPoint!.errors?.['required']) && endPoint!.touched" class="validation">Date Point is required</p>
+            </div>
+            <div class="field">
+                <label for="freeSeats">Free Seats:</label>
+                <input placeholder="Number of free passanger seats" type="number" formControlName="freeSeats">
+                <p *ngIf="(freeSeats!.errors?.['required'] || freeSeats?.errors?.['min'] || freeSeats?.errors?.['max']) && endPoint!.touched" class="validation">Free seats field is required! It's value should be between 1 - 8!</p>
+            </div>
+            <div class="field">
+                <label for="placeForLuggage">Place for luggage:</label>
+                <input type="checkbox" ng-init="false" formControlName="placeForLuggage">
+            </div>
+            <div class="field">
+                <label for="price">Price:</label>
+                <input placeholder="Price for fuel.." type="number" formControlName="price">
+            </div>
+            <div class="field">
+                <label for="carImageUrl">Image of the car:</label>
+                <input type="text" formControlName="carImageUrl">
+                <p *ngIf="carImageUrl!.errors?.['pattern'] && carImageUrl!.touched" class="validation">Please enter valid URL!</p>
+            </div>
+            <div class="field">
+                <label for="description">More information:</label>
+                <textarea rows="4" type="text" formControlName="description"></textarea>
+                <p *ngIf="(description!.errors?.['required'] || description?.errors?.['minlength'] || description?.errors?.['maxlength']) && description!.touched" class="validation">Description is required and it's length should be between 15 - 300!</p>
+            </div>
+            <button type="submit" id="submitBtn">Edit Trip</button>
+        </form>
+    </section>
+</div>

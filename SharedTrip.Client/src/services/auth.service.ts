@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { firstValueFrom, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -9,6 +9,8 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
   private loginPath = environment.apiUrl + 'api/authenticate/login'
   private registerPath = environment.apiUrl + 'api/authenticate/register'
+  private getUserTripId = environment.apiUrl + 'api/trip/userId/'
+  private headers = new HttpHeaders({ 'Authorization': `Bearer ${this.getToken()}` });
   constructor(private http: HttpClient) { }
   login(data: any): Observable<any> {
     return this.http.post(this.loginPath, data)
@@ -24,5 +26,8 @@ export class AuthService {
   }
   getToken():string{
     return localStorage.getItem('token')?? '';
+  }
+  isOwner(id: string | null): Promise<any> {
+   return firstValueFrom(this.http.get(this.getUserTripId + id, {headers:this.headers}))
   }
 }

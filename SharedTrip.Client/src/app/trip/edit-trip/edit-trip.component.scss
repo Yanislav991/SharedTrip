@@ -1,0 +1,77 @@
+.create-trip-form {
+    width: 30%;
+    margin: auto;
+    text-align: center;
+    border-radius: 18px;
+    padding: 10px;
+    background-color: var(--action-trans);
+}
+
+.field {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    padding: auto;
+    justify-content: center;
+}
+
+.field input::placeholder {
+    color: var(--text);
+    opacity: 0.7;
+}
+
+label {
+    width: 80%;
+    font-size: 12px;
+    margin: 10px 0 10px 0;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+/* Firefox */
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+input,
+textarea {
+    border: none;
+    border-radius: 18px;
+    padding: 4px;
+    background-color: var(--action);
+    border: 1px solid var(--text);
+    width: 80%;
+}
+
+.validation {
+    color: var(--red);
+    font-weight: 600;
+    text-shadow: 3px 3px 15px black;
+}
+
+#submitBtn {
+    display: inline-block;
+    outline: 0;
+    border: none;
+    cursor: pointer;
+    padding: 12px;
+    margin-left: 30px;
+    border-radius: 50px;
+    font-size: 12px;
+    background-color: var(--text);
+    font-weight: 500;
+    margin-top: 20px;
+    color: var(--action);
+    transition: all .2s ease-in-out;
+}
+
+#submitBtn:hover {
+    transform: scale(1.1);
+}

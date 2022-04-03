@@ -71,7 +71,6 @@ export class TripsComponent {
   loadData() {
     this.trips.getAllTrips().subscribe(data => {
       this.data = data;
-      console.log(data.status)
       this.tripsRecords = data.slice(0, this.recordsPerPage);
       this.recordsPages = [];
       this.populatePages();

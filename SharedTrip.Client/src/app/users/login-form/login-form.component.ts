@@ -26,7 +26,10 @@ export class LoginFormComponent implements OnInit {
       return
     }
     this.auth.login(this.loginForm.value).subscribe(data=>{
+      console.log(data)
+
       this.auth.saveToken(data.token)
+      
       this.router.navigate(['/trips/all'])
     })
   }

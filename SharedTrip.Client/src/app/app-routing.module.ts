@@ -8,6 +8,8 @@ import { NotAuthGuard } from 'src/guards/not-auth.guard';
 import { HomeComponent } from './core/home/home.component';
 import { CreateTripComponent } from './trip/create-trip/create-trip.component';
 import { TripDetailsComponent } from './trip/trip-details/trip-details.component';
+import { EditTripComponent } from './trip/edit-trip/edit-trip.component';
+import { MyTripGuard } from 'src/guards/my-trip.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginFormComponent, canActivate:[NotAuthGuard] },
@@ -15,7 +17,8 @@ const routes: Routes = [
   { path: 'trips/all', component: TripsComponent, canActivate:[AuthGuard] },
   { path: 'trips/create', component: CreateTripComponent, canActivate:[AuthGuard] },
   { path: 'trips/details/:id', component: TripDetailsComponent, canActivate:[AuthGuard] },
-  { path: '', component: HomeComponent }
+  { path: 'trips/edit/:id', component: EditTripComponent, canActivate:[MyTripGuard] },
+  { path: '', component: HomeComponent, canActivate:[NotAuthGuard] }
 
 ];
 

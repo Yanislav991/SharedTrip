@@ -10,7 +10,7 @@ import { UsersModule } from './users/users.module';
 import { AuthGuard } from 'src/guards/auth.guard';
 import { NotAuthGuard } from 'src/guards/not-auth.guard';
 import { TripModule } from './trip/trip.module';
-import { CreateTripComponent } from './trip/create-trip/create-trip.component';
+import { MyTripGuard } from 'src/guards/my-trip.guard';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,7 @@ import { CreateTripComponent } from './trip/create-trip/create-trip.component';
     TripModule,
     HttpClientModule
   ],
-  providers: [AuthService, TripsService, AuthGuard, NotAuthGuard],
+  providers: [AuthService, TripsService, AuthGuard, NotAuthGuard, MyTripGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

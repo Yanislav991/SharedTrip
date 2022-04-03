@@ -28,7 +28,7 @@ namespace SharedTrip.Services
                 StartPoint =x.StartPoint
             }).ToList();
         }
-        public async Task Create(TripViewModel trip, User user)
+        public async Task CreateAsync(TripViewModel trip, User user)
         {
             var validTrip = new Trip()
             {
@@ -50,7 +50,7 @@ namespace SharedTrip.Services
 
         public TripViewModel FindById(int id)
         {
-            var trip =  data.Trips.FirstOrDefault(x=>x.Id == id);
+            var trip = FindTrip(id);
             var userName = "Unknown";
             var user = this.data.Users.FirstOrDefault(x => x.Id == trip.UserId);
             if(user != null)
@@ -70,6 +70,31 @@ namespace SharedTrip.Services
                 StartPoint = trip.StartPoint,
                 UserName = userName
             };
+        }
+
+        public async Task<string> EditAsync(TripViewModel trip, string userName)
+        {
+            var currTrip = FindTrip(trip.Id);
+            if(currTrip.User.UserName != userName)
+            {
+                return "invalidUser";
+            }
+            currTrip.CarImageUrl = trip.CarImageUrl;
+            currTrip.Date = trip.Date;
+            currTrip.Price = trip.Price;
+            currTrip.Description = trip.Description;
+            currTrip.EndPoint= trip.EndPoint;
+            currTrip.StartPoint=trip.StartPoint;
+            currTrip.Date= trip.Date;
+            currTrip.FreeSeats=trip.FreeSeats;
+            currTrip.PlaceForLuggage = trip.PlaceForLuggage;
+            await this.data.SaveChangesAsync();
+            return "validUser";
+
+        }
+        private Trip FindTrip(int id)
+        {
+            return data.Trips.FirstOrDefault(x => x.Id == id);
         }
     }
 }
