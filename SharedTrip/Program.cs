@@ -18,6 +18,7 @@ builder.Services.AddDbContext<SharedTripDbContext>(options =>
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddTransient<ITripsService, TripService>();
+builder.Services.AddTransient<INewsService, NewsService>();
 
 builder.Services.AddIdentity<User, IdentityRole>(x =>
 {

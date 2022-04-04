@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using SharedTrip.Data;
 using SharedTrip.Data.Model;
 using SharedTrip.Models.Identity;
 using SharedTrip.Models.Trips;
@@ -79,6 +78,7 @@ namespace SharedTrip.Controllers
         [Authorize]
         public async Task<IActionResult> Edit(TripViewModel trip)
         {
+
             var name = this.User.Identity.Name;
             var user = await this.userManager.FindByNameAsync(name);
             if (user == null)
