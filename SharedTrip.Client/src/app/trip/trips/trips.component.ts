@@ -9,7 +9,7 @@ import { TripsService } from 'src/services/trips.service';
   styleUrls: ['./trips.component.scss']
 })
 export class TripsComponent {
-  @ViewChild('search') search:any;
+  @ViewChild('search') search: any;
   public tripsRecords!: Array<ITrip>;
   public recordsPages!: Array<number>;
   private data!: Array<ITrip>
@@ -23,22 +23,22 @@ export class TripsComponent {
     order: ""
   }
 
-  constructor(private trips: TripsService, private router:Router) {
+  constructor(private trips: TripsService, private router: Router) {
     this.loadData();
   }
-  
+
 
   onKey(event: any) {
     this.data = this.filterByValue(this.data, event.target?.value)
     this.tripsRecords = this.applyPaging(this.page.start, this.page.end);
     this.populatePages();
   }
-  refresh(){
+  refresh() {
     this.search.nativeElement.value = ' '
     this.loadData();
   }
-  filterByValue(array:any, value:any) {
-    return array.filter((data:any) =>  JSON.stringify(data).toLowerCase().indexOf(value.toLowerCase()) !== -1);
+  filterByValue(array: any, value: any) {
+    return array.filter((data: any) => JSON.stringify(data).toLowerCase().indexOf(value.toLowerCase()) !== -1);
   }
   sortData(event: MouseEvent) {
     let element = event.target as HTMLElement;
@@ -58,7 +58,7 @@ export class TripsComponent {
       this.currentSort.field = '';
       this.currentSort.order = '';
     }
-    else if(this.currentSort.field != sortTerm && this.currentSort.field != ""){
+    else if (this.currentSort.field != sortTerm && this.currentSort.field != "") {
       //@ts-ignore
       this.data.sort((a, b) => (a[sortTerm] < b[sortTerm]) ? -1 : 1);
       this.currentSort.field = sortTerm;
@@ -74,8 +74,8 @@ export class TripsComponent {
       this.tripsRecords = data.slice(0, this.recordsPerPage);
       this.recordsPages = [];
       this.populatePages();
-    }, err=>{
-      if(err.status==401){
+    }, err => {
+      if (err.status == 401) {
         this.router.navigate(['/']);
         localStorage.clear();
       }
@@ -99,7 +99,7 @@ export class TripsComponent {
   }
   populatePages() {
     this.recordsPages = [];
-    let pagesCount = Math.ceil(this.data.length/this.recordsPerPage);
+    let pagesCount = Math.ceil(this.data.length / this.recordsPerPage);
     for (let i = 1; i <= pagesCount; i++) {
       this.recordsPages.push(i);
     }

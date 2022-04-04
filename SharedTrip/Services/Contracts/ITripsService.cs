@@ -9,5 +9,6 @@ namespace SharedTrip.Services.Contracts
         public Task CreateAsync(TripViewModel trip, User user);
         public TripViewModel FindById(int id);
         public Task<string> EditAsync (TripViewModel trip, string userName);
+        public Task DeleteAsync(int id);
     }
 }

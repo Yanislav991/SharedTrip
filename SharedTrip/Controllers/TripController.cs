@@ -59,6 +59,21 @@ namespace SharedTrip.Controllers
             if (trip == null) return NotFound();
             return trip;
         }
+        [HttpDelete("delete")]
+        [Authorize]
+        public async Task<ActionResult<TripViewModel>> Delete([FromBody] int id)
+        {
+            var name = this.User.Identity.Name;
+            var user = await this.userManager.FindByNameAsync(name);
+            var trip = this.tripsService.FindById(id);
+            if (user == null || trip.UserName != user.UserName)
+            {
+                return StatusCode(StatusCodes.Status401Unauthorized, new Response { Status = "Error", Message = "Invalid User!" });
+            }
+            await this.tripsService.DeleteAsync(id);
+            return Ok(new Response { Status = "Success", Message = "Trip deleted successfully!" });
+
+        }
         [HttpPut]
         [Route("edit")]
         [Authorize]

@@ -44,7 +44,9 @@ export class EditTripComponent implements OnInit {
     let data = this.editTripForm.value;
     data.id = this.editModel.id;
     this.trips.edit(data).subscribe(s=>{
-      console.log(s)
+      if(s.status == "Success"){
+        this.router.navigate(['/trips/all'])
+      }
     })
   }
   populateForm(model: ITrip) {

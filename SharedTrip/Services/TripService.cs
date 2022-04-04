@@ -96,5 +96,12 @@ namespace SharedTrip.Services
         {
             return data.Trips.FirstOrDefault(x => x.Id == id);
         }
+
+        public async Task DeleteAsync(int id)
+        {
+            var trip = this.data.Trips.FirstOrDefault(x => x.Id == id);
+            this.data.Trips.Remove(trip);
+            await this.data.SaveChangesAsync();
+        }
     }
 }

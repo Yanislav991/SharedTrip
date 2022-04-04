@@ -17,7 +17,8 @@
         </div>
     </section>
     <section class="nav">
-        <a id="edit" [routerLink]="['/trips/edit', currTrip.id]">Edit</a>
+        <a id="edit" *ngIf="isOwner" [routerLink]="['/trips/edit', currTrip.id]">Edit</a>
+        <a id="delete" *ngIf="isOwner" (click)="deleteTrip()">Delete</a>
         <a id="back" [routerLink]="['/trips/all']">Back to the Trips!</a>
     </section>
 </section>

@@ -45,9 +45,11 @@ strong {
 }
 
 #edit,
-#back {
+#back,
+#delete {
     display: inline-block;
     outline: 0;
+    text-decoration: none;
     border: none;
     cursor: pointer;
     padding: 12px;
@@ -62,6 +64,7 @@ strong {
 }
 
 #back:hover,
-#edit:hover {
+#edit:hover,
+#delete:hover {
     transform: scale(1.1);
 }

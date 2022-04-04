@@ -19,6 +19,7 @@ export class MyTripGuard implements CanActivate {
       this.router.navigate(['/login'])
       return false;
     } else if (this.isOwner == false) {
+      alert("You are not allowed to edit this Trip since you're not its creator!")
       this.router.navigate(['/trips/all'])
       return false;
     } else {

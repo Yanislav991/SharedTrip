@@ -12,6 +12,7 @@ export class TripsService {
   allTripsPath = environment.apiUrl + 'api/trip/all';
   createTripsPath = environment.apiUrl + 'api/trip/create';
   editTripsPath = environment.apiUrl + 'api/trip/edit';
+  deleteTripsPath = environment.apiUrl + 'api/trip/delete';
   getDetailsTripPath = environment.apiUrl + 'api/trip/details/';
   token: string = this.auth.getToken();
   headers = new HttpHeaders({ 'Authorization': `Bearer ${this.token}` });
@@ -28,5 +29,8 @@ export class TripsService {
   }
   edit(data: any): Observable<any> {
     return this.http.put(this.editTripsPath, data, { headers: this.headers })
+  }
+  delete(data: any): Observable<any> {
+    return this.http.delete(this.deleteTripsPath, { headers: this.headers, body: data })
   }
 }
