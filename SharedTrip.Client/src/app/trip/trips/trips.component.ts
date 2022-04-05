@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ITrip } from 'src/interfaces/ITrip';
 import { TripsService } from 'src/services/trips.service';
@@ -8,7 +8,7 @@ import { TripsService } from 'src/services/trips.service';
   templateUrl: './trips.component.html',
   styleUrls: ['./trips.component.scss']
 })
-export class TripsComponent {
+export class TripsComponent implements OnInit{
   @ViewChild('search') search: any;
   public tripsRecords!: Array<ITrip>;
   public recordsPages!: Array<number>;
@@ -24,9 +24,10 @@ export class TripsComponent {
   }
 
   constructor(private trips: TripsService, private router: Router) {
+  }
+  ngOnInit(): void {
     this.loadData();
   }
-
 
   onKey(event: any) {
     this.data = this.filterByValue(this.data, event.target?.value)

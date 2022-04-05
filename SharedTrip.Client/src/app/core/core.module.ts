@@ -4,6 +4,7 @@ import { HeaderComponent } from './header/header.component';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
+import { NewsComponent } from './news/news.component';
 
 
 
@@ -12,6 +13,8 @@ import { HomeComponent } from './home/home.component';
     HeaderComponent, 
     FooterComponent,
     HomeComponent,
+    NewsComponent
+
 ],
   imports: [
     CommonModule,

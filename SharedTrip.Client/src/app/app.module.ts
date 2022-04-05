@@ -14,7 +14,7 @@ import { MyTripGuard } from 'src/guards/my-trip.guard';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,7 +24,13 @@ import { MyTripGuard } from 'src/guards/my-trip.guard';
     TripModule,
     HttpClientModule
   ],
-  providers: [AuthService, TripsService, AuthGuard, NotAuthGuard, MyTripGuard],
+  providers: [
+    AuthService,
+    TripsService,
+    AuthGuard,
+    NotAuthGuard,
+    MyTripGuard],
+    
   bootstrap: [AppComponent]
 })
 export class AppModule { }
