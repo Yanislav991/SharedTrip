@@ -13,6 +13,7 @@ export class TripsService {
   createTripsPath = environment.apiUrl + 'api/trip/create';
   editTripsPath = environment.apiUrl + 'api/trip/edit';
   deleteTripsPath = environment.apiUrl + 'api/trip/delete';
+  savePlaceTripsPath = environment.apiUrl + 'api/trip/savePlace';
   getDetailsTripPath = environment.apiUrl + 'api/trip/details/';
   token: string = this.auth.getToken();
   headers = new HttpHeaders({ 'Authorization': `Bearer ${this.token}` });

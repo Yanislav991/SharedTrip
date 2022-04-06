@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using SharedTrip.Data;
 using SharedTrip.Data.Model;
+using SharedTrip.Hubs;
 using SharedTrip.Infrastucture;
 using SharedTrip.Services;
 using SharedTrip.Services.Contracts;
@@ -16,6 +17,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<SharedTripDbContext>(options =>
     options.UseSqlServer(connectionString));
 
+builder.Services.AddSignalR();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddTransient<ITripsService, TripService>();
 builder.Services.AddTransient<INewsService, NewsService>();
@@ -50,6 +52,13 @@ builder.Services.AddAuthentication(options =>
         };
     });
 
+builder.Services.AddCors(options => options.AddPolicy("CorsPolicy", b =>
+{
+    b.AllowAnyMethod()
+      .AllowAnyHeader()
+      .WithOrigins("http://localhost:4200")
+      .AllowCredentials();
+}));
 builder.Services.AddControllers();
 
 var app = builder.Build();
@@ -60,10 +69,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseCors(x => x
-            .AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader());
+app.UseCors("CorsPolicy");
 
 app.UseRouting();
 
@@ -72,6 +78,7 @@ app.UseAuthorization();
 app.UseEndpoints(endPoints =>
 {
     endPoints.MapControllers();
+    endPoints.MapHub<ChatHub>("/chat");
 });
 
 app.PrepareDataBase();

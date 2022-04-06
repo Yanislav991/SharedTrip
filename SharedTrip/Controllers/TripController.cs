@@ -26,6 +26,7 @@ namespace SharedTrip.Controllers
         {
             return tripsService.GetTrips();
         }
+
         [HttpPost]
         [Route("create")]
         [Authorize]
@@ -60,7 +61,7 @@ namespace SharedTrip.Controllers
         }
         [HttpDelete("delete")]
         [Authorize]
-        public async Task<ActionResult<TripViewModel>> Delete([FromBody] int id)
+        public async Task<IActionResult> Delete([FromBody] int id)
         {
             var name = this.User.Identity.Name;
             var user = await this.userManager.FindByNameAsync(name);

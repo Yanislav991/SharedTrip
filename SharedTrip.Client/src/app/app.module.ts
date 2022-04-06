@@ -11,16 +11,19 @@ import { AuthGuard } from 'src/guards/auth.guard';
 import { NotAuthGuard } from 'src/guards/not-auth.guard';
 import { TripModule } from './trip/trip.module';
 import { MyTripGuard } from 'src/guards/my-trip.guard';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
     CoreModule,
     AppRoutingModule,
     UsersModule,
+    FormsModule,
     TripModule,
     HttpClientModule
   ],

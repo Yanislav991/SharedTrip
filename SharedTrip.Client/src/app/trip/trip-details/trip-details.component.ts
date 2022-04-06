@@ -34,10 +34,11 @@ export class TripDetailsComponent implements OnInit {
     this.routeSub.unsubscribe();
     this.tripFetcSub.unsubscribe();
   }
+
   deleteTrip() {
     if (this.isOwner) {
-      this.trips.delete(this.currTrip.id).subscribe(s=>{
-        if(s.status == "Success"){
+      this.trips.delete(this.currTrip.id).subscribe(s => {
+        if (s.status == "Success") {
           alert("Deleted successfuly!");
           this.router.navigate(['/trips/all'])
         }

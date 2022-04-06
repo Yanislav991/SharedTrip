@@ -92,7 +92,7 @@ namespace SharedTrip.Services
             return "validUser";
 
         }
-        private Trip FindTrip(int id)
+        public Trip FindTrip(int id)
         {
             return data.Trips.FirstOrDefault(x => x.Id == id);
         }
@@ -103,5 +103,6 @@ namespace SharedTrip.Services
             this.data.Trips.Remove(trip);
             await this.data.SaveChangesAsync();
         }
+
     }
 }

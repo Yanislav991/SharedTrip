@@ -5,6 +5,8 @@ import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { NewsComponent } from './news/news.component';
+import { ChatComponent } from './chat/chat.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -13,11 +15,13 @@ import { NewsComponent } from './news/news.component';
     HeaderComponent, 
     FooterComponent,
     HomeComponent,
-    NewsComponent
+    NewsComponent,
+    ChatComponent
 
 ],
   imports: [
     CommonModule,
+    FormsModule,
     RouterModule
   ],
   exports:[

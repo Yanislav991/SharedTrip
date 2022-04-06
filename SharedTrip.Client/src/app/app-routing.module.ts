@@ -11,6 +11,7 @@ import { TripDetailsComponent } from './trip/trip-details/trip-details.component
 import { EditTripComponent } from './trip/edit-trip/edit-trip.component';
 import { MyTripGuard } from 'src/guards/my-trip.guard';
 import { NewsComponent } from './core/news/news.component';
+import { ChatComponent } from './core/chat/chat.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginFormComponent, canActivate:[NotAuthGuard] },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'trips/create', component: CreateTripComponent, canActivate:[AuthGuard] },
   { path: 'trips/details/:id', component: TripDetailsComponent, canActivate:[AuthGuard] },
   { path: 'trips/edit/:id', component: EditTripComponent, canActivate:[MyTripGuard] },
+  { path: 'chat', component: ChatComponent, canActivate:[AuthGuard] },
   { path: 'news/all', component: NewsComponent },
   { path: '', component: HomeComponent, canActivate:[NotAuthGuard] }
 

@@ -1,7 +1,6 @@
 <section class="news">
     <article class="card" *ngFor="let article of newsData">
-        <h4 class="has-tooltip tooltip">{{article.title}} <span class="tooltip-wrapper"><span class="tooltip">Tooltip</span></span>
-        </h4>
+        <h4 class="tooltip">{{article.title}} </h4>
         <p class="date">{{article.date}}</p>
         <div class="article-img">
             <img [src]="article.imageUrl" [alt]="article.title">
