@@ -24,7 +24,7 @@ namespace SharedTrip.Controllers
         [Authorize]
         public List<TripViewModel> GetTrips()
         {
-            return tripsService.GetTrips();
+            return tripsService.GetTrips(null);
         }
 
         [HttpPost]
@@ -32,8 +32,8 @@ namespace SharedTrip.Controllers
         [Authorize]
         public async Task<IActionResult> Create(TripViewModel trip)
         {
-            var name = this.User.Identity.Name;
-            var user = await this.userManager.FindByNameAsync(name);
+            var name = User.Identity.Name;
+            var user = await userManager.FindByNameAsync(name);
             if (user == null)
             {
                 return StatusCode(StatusCodes.Status401Unauthorized, new Response { Status = "Error", Message = "Invalid User!" });
@@ -42,20 +42,20 @@ namespace SharedTrip.Controllers
             {
                 return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Error", Message = "Invalid Trip!" });
             }
-            await this.tripsService.CreateAsync(trip, user);
+            await tripsService.CreateAsync(trip, user);
             return Ok(new Response { Status = "Success", Message = "Trip created successfully!" });
         }
         [HttpGet("details/{id}")]
         [Authorize]
         public async Task<ActionResult<TripViewModel>> Details(int id)
         {
-            var name = this.User.Identity.Name;
-            var user = await this.userManager.FindByNameAsync(name);
+            var name = User.Identity.Name;
+            var user = await userManager.FindByNameAsync(name);
             if (user == null)
             {
                 return StatusCode(StatusCodes.Status401Unauthorized, new Response { Status = "Error", Message = "Invalid User!" });
             }
-            var trip = this.tripsService.FindById(id);
+            var trip = tripsService.FindById(id);
             if (trip == null) return NotFound();
             return trip;
         }
@@ -63,14 +63,14 @@ namespace SharedTrip.Controllers
         [Authorize]
         public async Task<IActionResult> Delete([FromBody] int id)
         {
-            var name = this.User.Identity.Name;
-            var user = await this.userManager.FindByNameAsync(name);
-            var trip = this.tripsService.FindById(id);
+            var name = User.Identity.Name;
+            var user = await userManager.FindByNameAsync(name);
+            var trip = tripsService.FindById(id);
             if (user == null || trip.UserName != user.UserName)
             {
                 return StatusCode(StatusCodes.Status401Unauthorized, new Response { Status = "Error", Message = "Invalid User!" });
             }
-            await this.tripsService.DeleteAsync(id);
+            await tripsService.DeleteAsync(id);
             return Ok(new Response { Status = "Success", Message = "Trip deleted successfully!" });
 
         }
@@ -80,8 +80,8 @@ namespace SharedTrip.Controllers
         public async Task<IActionResult> Edit(TripViewModel trip)
         {
 
-            var name = this.User.Identity.Name;
-            var user = await this.userManager.FindByNameAsync(name);
+            var name = User.Identity.Name;
+            var user = await userManager.FindByNameAsync(name);
             if (user == null)
             {
                 return StatusCode(StatusCodes.Status401Unauthorized, new Response { Status = "Error", Message = "Please login!" });
@@ -90,7 +90,7 @@ namespace SharedTrip.Controllers
             {
                 return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Error", Message = "Invalid Trip!" });
             }
-            var response = await this.tripsService.EditAsync(trip, name);
+            var response = await tripsService.EditAsync(trip, name);
             if (response == "invalidUser")
             {
                 return StatusCode(StatusCodes.Status401Unauthorized, new Response { Status = "Error", Message = "Invalid User!" });
@@ -102,8 +102,8 @@ namespace SharedTrip.Controllers
         [Authorize]
         public async Task<IActionResult> GetUserId(int id)
         {
-            var trip = this.tripsService.FindById(id);
-            var name = this.User.Identity.Name;
+            var trip = tripsService.FindById(id);
+            var name = User.Identity.Name;
             return Ok(new { isOwner = trip.UserName == name });
         }
 

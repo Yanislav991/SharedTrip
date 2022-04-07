@@ -13,20 +13,25 @@ namespace SharedTrip.Services
         {
             this.data = data;
         }
-        public List<TripViewModel> GetTrips()
+        public List<TripViewModel> GetTrips(string? userId)
         {
-            return this.data.Trips.Select(x => new TripViewModel
+            var trips = data.Trips;
+            if (userId != null)
             {
-                Id = x.Id,
-                CarImageUrl =x.CarImageUrl,
-                Date = x.Date,
-                Description = x.Description,
-                EndPoint = x.EndPoint,
-                FreeSeats = x.FreeSeats,
-                PlaceForLuggage = x.PlaceForLuggage,
-                Price= x.Price,
-                StartPoint =x.StartPoint
-            }).ToList();
+                trips.Where(x=>x.User.Id == userId);
+            }
+            return trips.Select(x => new TripViewModel
+             {
+                 Id = x.Id,
+                 CarImageUrl = x.CarImageUrl,
+                 Date = x.Date,
+                 Description = x.Description,
+                 EndPoint = x.EndPoint,
+                 FreeSeats = x.FreeSeats,
+                 PlaceForLuggage = x.PlaceForLuggage,
+                 Price = x.Price,
+                 StartPoint = x.StartPoint
+             }).ToList();
         }
         public async Task CreateAsync(TripViewModel trip, User user)
         {
@@ -52,7 +57,7 @@ namespace SharedTrip.Services
         {
             var trip = FindTrip(id);
             var userName = "Unknown";
-            var user = this.data.Users.FirstOrDefault(x => x.Id == trip.UserId);
+            var user = data.Users.FirstOrDefault(x => x.Id == trip.UserId);
             if(user != null)
             {
                 userName = user.UserName;
@@ -88,7 +93,7 @@ namespace SharedTrip.Services
             currTrip.Date= trip.Date;
             currTrip.FreeSeats=trip.FreeSeats;
             currTrip.PlaceForLuggage = trip.PlaceForLuggage;
-            await this.data.SaveChangesAsync();
+            await data.SaveChangesAsync();
             return "validUser";
 
         }
@@ -99,9 +104,9 @@ namespace SharedTrip.Services
 
         public async Task DeleteAsync(int id)
         {
-            var trip = this.data.Trips.FirstOrDefault(x => x.Id == id);
-            this.data.Trips.Remove(trip);
-            await this.data.SaveChangesAsync();
+            var trip = data.Trips.FirstOrDefault(x => x.Id == id);
+            data.Trips.Remove(trip);
+            await data.SaveChangesAsync();
         }
 
     }

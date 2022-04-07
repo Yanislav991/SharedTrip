@@ -16,16 +16,16 @@
                 <a [routerLink]="['./chat']">Chat</a>
             </li>
             <li class="navi-item ">
-                <a href="javascript:void(0) " *ngIf="isLogged">Profile</a>
+                <a [routerLink]="['./profile']" *ngIf="isLogged">Profile</a>
             </li>
             <li class="navi-item ">
-                <a href="javascript:void(0) " [routerLink]="['./']" (click)="logout()" *ngIf="isLogged">Logout</a>
+                <a [routerLink]="['./']" (click)="logout()" *ngIf="isLogged">Logout</a>
             </li>
             <li class="navi-item ">
-                <a href="javascript:void(0) " [routerLink]="['./login']" *ngIf="!isLogged">Login</a>
+                <a [routerLink]="['./login']" *ngIf="!isLogged">Login</a>
             </li>
             <li class="navi-item ">
-                <a href="javascript:void(0) " [routerLink]="['./register']" *ngIf="!isLogged">Register</a>
+                <a [routerLink]="['./register']" *ngIf="!isLogged">Register</a>
             </li>
         </ul>
     </section>

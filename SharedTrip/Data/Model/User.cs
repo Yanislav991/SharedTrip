@@ -6,5 +6,6 @@ namespace SharedTrip.Data.Model
     {
         public HashSet<Trip> TripsOrganized { get; set; } = new HashSet<Trip>();
         public HashSet<Trip> TripsParticipated { get; set; } = new HashSet<Trip>();
+        public string AvatarUrl { get; internal set; }
     }
 }

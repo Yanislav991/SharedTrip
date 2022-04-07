@@ -18,7 +18,7 @@ namespace SharedTrip.Controllers
         [HttpPost]
         public IActionResult SendRequest([FromBody] Message msg)
         {
-            this.hubContext.Clients.All.SendAsync("ReceiveOne", msg.Username, msg.MessageText, msg.DateTime);
+            hubContext.Clients.All.SendAsync("ReceiveOne", msg.Username, msg.MessageText, msg.DateTime);
             return Ok();
         }
     }

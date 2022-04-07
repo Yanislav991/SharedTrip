@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SharedTrip.Data.Model;
 using SharedTrip.Models.News;
-using SharedTrip.Models.Trips;
 using SharedTrip.Services.Contracts;
 
 namespace SharedTrip.Controllers
@@ -15,14 +13,14 @@ namespace SharedTrip.Controllers
         private readonly INewsService newsService;
         public NewsController(INewsService tripsService, UserManager<User> userManager)
         {
-            this.newsService = tripsService;
+            newsService = tripsService;
         }
 
         [HttpGet]
         [Route("all")]
         public List<News> GetNews()
         {
-            var news = this.newsService.GetNews();
+            var news = newsService.GetNews();
             return news;
         }
     }
