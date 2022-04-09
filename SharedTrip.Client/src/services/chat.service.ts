@@ -27,7 +27,6 @@ export class ChatService {
   }
 
 
-  // Strart the connection
   public async start() {
     try {
       await this.connection.start();
@@ -45,12 +44,9 @@ export class ChatService {
     this.sharedObj.next(this.receivedMessageObject);
  }
 
-  /* ****************************** Public Mehods **************************************** */
-
-  // Calls the controller method
   public broadcastMessage(msgDto: any) {
     this.http.post(this.POST_URL, msgDto).subscribe(data => console.log(data));
-    // this.connection.invoke("SendMessage", msgDto.user, msgDto.msgText).catch(err => console.error(err));    // This can invoke the server method named as "SendMethod1" directly.
+    // this.connection.invoke("SendMessage", msgDto.user, msgDto.msgText).catch(err => console.error(err));    // This can invoke the server method named as "SendMethod" directly.
   }
 
   public retrieveMappedObject(): Observable<IMessage> {

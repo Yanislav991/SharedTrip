@@ -21,6 +21,7 @@ builder.Services.AddSignalR();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddTransient<ITripsService, TripService>();
 builder.Services.AddTransient<INewsService, NewsService>();
+builder.Services.AddTransient<IUserService, UserService>();
 
 builder.Services.AddIdentity<User, IdentityRole>(x =>
 {

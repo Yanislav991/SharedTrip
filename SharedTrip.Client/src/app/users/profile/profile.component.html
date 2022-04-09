@@ -1,14 +1,11 @@
 <section class="profile">
     <section class="user-info">
         <div class="img-container">
-            <img [src]="profile.avatarUrl == undefined ? profile.avatarUrl : noProfilePictureImage ">
+            <img [src]="profile.avatarUrl ">
         </div>
-        <p *ngIf="editMode" class="userName">User: {{profile.userName}}</p>
-        <p *ngIf="editMode" class="email">Email: {{profile.email}}</p>
-        <p *ngIf="editMode" class="phoneNumber">Phone: {{profile.phoneNumber==''? profile.phoneNumber: "You have not declared a phone number!"}}
-        </p>
-        <p class="tripsCount">Trips: {{profile.trips.length}}</p>
-        <button class="edit" (click)="toggleEdit()">Edit</button>
+        <app-user-info *ngIf="!editMode" [profile]="profile"></app-user-info>
+        <app-user-profile-edit *ngIf="editMode" [profile]="profile"></app-user-profile-edit>
+        <button *ngIf="!editMode" class="edit" (click)="toggleEdit()">Edit</button>
     </section>
     <section class="trips">
         <div class="trip-card" *ngFor="let trip of profile.trips">

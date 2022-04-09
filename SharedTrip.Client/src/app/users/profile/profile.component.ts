@@ -16,7 +16,9 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.auth.getUser().subscribe(user=>{
       this.profile = user;
-      console.log(this.profile)
+      if(this.profile.avatarUrl==""){
+        this.profile.avatarUrl = this.noProfilePictureImage;
+      }
     })
   }
   toggleEdit(){

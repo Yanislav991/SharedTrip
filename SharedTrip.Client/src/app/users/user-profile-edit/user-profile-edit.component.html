@@ -1,0 +1,17 @@
+<form id="editUserForm" [formGroup]="editUserForm" (submit)="submit()">
+    <div class="field">
+        <label for="email">Email:</label>
+        <input class="email" [value]="profile.email">
+        <p class="validation" *ngIf="email!.errors?.['required'] && email!.touched" class="validation">Email is required, please enter valid Email</p>
+    </div>
+    <div class="field">
+        <label for="phoneNumber">Phone:</label>
+        <input class="phoneNumber" [value]="profile.phoneNumber" formControlName="phoneNumber">
+        <p class="validation" *ngIf="phoneNumber!.errors?.['pattern'] && phoneNumber!.touched" class="validation">Invalid phone number! The format should be - 0888888888</p>
+    </div>
+    <div class="field">
+        <label for="image">Avatar Url:</label>
+        <input type="text" formControlName="image">
+        <button id="submitBtn" class="edit" type="submit">Save</button>
+    </div>
+</form>

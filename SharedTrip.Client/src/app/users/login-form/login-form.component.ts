@@ -21,10 +21,9 @@ export class LoginFormComponent implements OnInit {
   ngOnInit(): void {
   }
   login(){
-    console.log(this.loginForm.valid)
     if(!this.loginForm.valid){
       this.shared.fireValidation(this.loginForm);
-      return
+      return;
     }
     this.auth.login(this.loginForm.value).subscribe(data=>{
       this.auth.saveToken(data.token)

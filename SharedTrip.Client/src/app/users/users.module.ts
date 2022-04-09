@@ -5,6 +5,8 @@ import { RegisterFormComponent } from './register-form/register-form.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
+import { UserInfoComponent } from './user-info/user-info.component';
+import { UserProfileEditComponent } from './user-profile-edit/user-profile-edit.component';
 
 
 
@@ -12,7 +14,9 @@ import { ProfileComponent } from './profile/profile.component';
   declarations: [ 
     LoginFormComponent, 
     RegisterFormComponent,
-    ProfileComponent
+    ProfileComponent,
+    UserInfoComponent,
+    UserProfileEditComponent
   ],
   imports: [
     CommonModule,

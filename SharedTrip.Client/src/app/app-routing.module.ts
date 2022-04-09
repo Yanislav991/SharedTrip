@@ -14,17 +14,18 @@ import { NewsComponent } from './core/news/news.component';
 import { ChatComponent } from './core/chat/chat.component';
 import { ProfileComponent } from './users/profile/profile.component';
 
+
 const routes: Routes = [
-  { path: 'login', component: LoginFormComponent, canActivate:[NotAuthGuard] },
-  { path: 'register', component: RegisterFormComponent, canActivate:[NotAuthGuard] },
-  { path: 'trips/all', component: TripsComponent, canActivate:[AuthGuard] },
-  { path: 'trips/create', component: CreateTripComponent, canActivate:[AuthGuard] },
-  { path: 'trips/details/:id', component: TripDetailsComponent, canActivate:[AuthGuard] },
-  { path: 'trips/edit/:id', component: EditTripComponent, canActivate:[MyTripGuard] },
-  { path: 'chat', component: ChatComponent, canActivate:[AuthGuard] },
-  { path: 'profile', component: ProfileComponent, canActivate:[AuthGuard] },
+  { path: 'login', component: LoginFormComponent, canActivate: [NotAuthGuard] },
+  { path: 'register', component: RegisterFormComponent, canActivate: [NotAuthGuard] },
+  { path: 'trips/all', component: TripsComponent, canActivate: [AuthGuard] },
+  { path: 'trips/create', component: CreateTripComponent, canActivate: [AuthGuard] },
+  { path: 'trips/details/:id', component: TripDetailsComponent, canActivate: [AuthGuard] },
+  { path: 'trips/edit/:id', component: EditTripComponent, canActivate: [MyTripGuard] },
+  { path: 'chat', component: ChatComponent, canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'news/all', component: NewsComponent },
-  { path: '', component: HomeComponent, canActivate:[NotAuthGuard] }
+  { path: '', component: HomeComponent, canActivate: [NotAuthGuard] }
 
 ];
 

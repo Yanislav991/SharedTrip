@@ -18,27 +18,39 @@ namespace SharedTrip.Services
             var trips = data.Trips;
             if (userId != null)
             {
-                trips.Where(x=>x.User.Id == userId);
+                return trips.Where(x => x.User.Id == userId).Select(x => new TripViewModel
+                {
+                    Id = x.Id,
+                    CarImageUrl = x.CarImageUrl,
+                    Date = x.Date,
+                    Description = x.Description,
+                    EndPoint = x.EndPoint,
+                    FreeSeats = x.FreeSeats,
+                    PlaceForLuggage = x.PlaceForLuggage,
+                    Price = x.Price,
+                    StartPoint = x.StartPoint
+                }).ToList(); 
             }
+
             return trips.Select(x => new TripViewModel
-             {
-                 Id = x.Id,
-                 CarImageUrl = x.CarImageUrl,
-                 Date = x.Date,
-                 Description = x.Description,
-                 EndPoint = x.EndPoint,
-                 FreeSeats = x.FreeSeats,
-                 PlaceForLuggage = x.PlaceForLuggage,
-                 Price = x.Price,
-                 StartPoint = x.StartPoint
-             }).ToList();
+            {
+                Id = x.Id,
+                CarImageUrl = x.CarImageUrl,
+                Date = x.Date,
+                Description = x.Description,
+                EndPoint = x.EndPoint,
+                FreeSeats = x.FreeSeats,
+                PlaceForLuggage = x.PlaceForLuggage,
+                Price = x.Price,
+                StartPoint = x.StartPoint
+            }).ToList();
         }
         public async Task CreateAsync(TripViewModel trip, User user)
         {
             var validTrip = new Trip()
             {
                 User = user,
-                UserId = user.Id,   
+                UserId = user.Id,
                 CarImageUrl = trip.CarImageUrl,
                 Date = trip.Date,
                 Description = trip.Description,
@@ -58,7 +70,7 @@ namespace SharedTrip.Services
             var trip = FindTrip(id);
             var userName = "Unknown";
             var user = data.Users.FirstOrDefault(x => x.Id == trip.UserId);
-            if(user != null)
+            if (user != null)
             {
                 userName = user.UserName;
             }
@@ -80,7 +92,7 @@ namespace SharedTrip.Services
         public async Task<string> EditAsync(TripViewModel trip, string userName)
         {
             var currTrip = FindTrip(trip.Id);
-            if(currTrip.User.UserName != userName)
+            if (currTrip.User.UserName != userName)
             {
                 return "invalidUser";
             }
@@ -88,10 +100,10 @@ namespace SharedTrip.Services
             currTrip.Date = trip.Date;
             currTrip.Price = trip.Price;
             currTrip.Description = trip.Description;
-            currTrip.EndPoint= trip.EndPoint;
-            currTrip.StartPoint=trip.StartPoint;
-            currTrip.Date= trip.Date;
-            currTrip.FreeSeats=trip.FreeSeats;
+            currTrip.EndPoint = trip.EndPoint;
+            currTrip.StartPoint = trip.StartPoint;
+            currTrip.Date = trip.Date;
+            currTrip.FreeSeats = trip.FreeSeats;
             currTrip.PlaceForLuggage = trip.PlaceForLuggage;
             await data.SaveChangesAsync();
             return "validUser";

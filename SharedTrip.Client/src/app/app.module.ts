@@ -12,7 +12,6 @@ import { NotAuthGuard } from 'src/guards/not-auth.guard';
 import { TripModule } from './trip/trip.module';
 import { MyTripGuard } from 'src/guards/my-trip.guard';
 import { FormsModule } from '@angular/forms';
-import { ProfileComponent } from './users/profile/profile.component';
 
 
 @NgModule({

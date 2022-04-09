@@ -12,28 +12,31 @@ import { TripsService } from 'src/services/trips.service';
 })
 export class TripDetailsComponent implements OnInit {
   public currTrip!: ITrip;
-  private routeSub!: Subscription;
   public isOwner!: Boolean;
-  private tripFetcSub!: Subscription;
   constructor(private trips: TripsService, private ar: ActivatedRoute, private router: Router, private auth: AuthService) { }
 
   ngOnInit(): void {
-    this.routeSub = this.ar.params.subscribe(p => {
+    this.ar.params.subscribe(p => {
       let id = p['id'];
-      this.tripFetcSub = this.trips.getTripById(id).subscribe(trip => {
-        this.currTrip = trip;
-        this.auth.isOwner(this.currTrip.id.toString()).then(x => {
-          this.isOwner = x.isOwner;
-        })
+      this.trips.getTripById(id).subscribe({
+        next: (trip) => { 
+          this.currTrip = trip;
+          this.auth.isOwner(this.currTrip.id.toString()).then(x=>{
+            this.isOwner = x.isOwner
+          }) 
+        },
+        error: (err) => { alert("Application problem!") },
+        complete: () => { console.log('complete') }
       })
     })
-
-
   }
-  ngOnDestroy(): void {
-    this.routeSub.unsubscribe();
-    this.tripFetcSub.unsubscribe();
-  }
+
+  // this.trips.getTripById(id).subscribe(trip => {
+  //   this.currTrip = trip;
+  //   this.auth.isOwner(this.currTrip.id.toString()).then(x => {
+  //     this.isOwner = x.isOwner;
+  //   })
+  // })
 
   deleteTrip() {
     if (this.isOwner) {
