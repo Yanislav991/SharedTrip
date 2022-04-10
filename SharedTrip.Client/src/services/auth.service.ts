@@ -11,6 +11,7 @@ export class AuthService {
   private loginPath = environment.apiUrl + 'api/authenticate/login'
   private registerPath = environment.apiUrl + 'api/authenticate/register'
   private getUserTripId = environment.apiUrl + 'api/trip/userId/'
+  private editUserPath = environment.apiUrl + 'api/user/edit';
   private getUserProfile = environment.apiUrl + 'api/user/get/'
   private headers = new HttpHeaders({ 'Authorization': `Bearer ${this.getToken()}` });
   constructor(private http: HttpClient) { }
@@ -34,5 +35,8 @@ export class AuthService {
   }
   getUser():Observable<IProfile>{
     return this.http.get<IProfile>(this.getUserProfile, {headers:this.headers})
+  }
+  updateUser(data: any): Observable<any> {
+    return this.http.post(this.editUserPath, data, { headers: this.headers })
   }
 }

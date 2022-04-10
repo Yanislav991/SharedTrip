@@ -16,8 +16,8 @@ import { ProfileComponent } from './users/profile/profile.component';
 
 
 const routes: Routes = [
-  { path: 'login', component: LoginFormComponent, canActivate: [NotAuthGuard] },
-  { path: 'register', component: RegisterFormComponent, canActivate: [NotAuthGuard] },
+  { path: 'login', component: LoginFormComponent, canActivate: [NotAuthGuard], data: { animation: 'LoginPage' } },
+  { path: 'register', component: RegisterFormComponent, canActivate: [NotAuthGuard], data: { animation: 'RegisterPage' } },
   { path: 'trips/all', component: TripsComponent, canActivate: [AuthGuard] },
   { path: 'trips/create', component: CreateTripComponent, canActivate: [AuthGuard] },
   { path: 'trips/details/:id', component: TripDetailsComponent, canActivate: [AuthGuard] },

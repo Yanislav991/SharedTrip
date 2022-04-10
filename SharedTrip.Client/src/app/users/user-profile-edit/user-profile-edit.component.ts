@@ -2,8 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IProfile } from 'src/interfaces/IProfile';
+import { AuthService } from 'src/services/auth.service';
 import { SharedService } from 'src/services/shared.service';
-import { UserService } from 'src/services/user.service';
 
 @Component({
   selector: 'app-user-profile-edit',
@@ -13,7 +13,7 @@ import { UserService } from 'src/services/user.service';
 export class UserProfileEditComponent implements OnInit {
   private selectedFile!: File;
   public editUserForm!: FormGroup;
-  constructor(private userService: UserService, private fb: FormBuilder, private shared: SharedService, private router: Router) {
+  constructor(private userService: AuthService, private fb: FormBuilder, private shared: SharedService, private router: Router) {
     this.editUserForm = this.fb.group({
       'email': [[''], [Validators.required, Validators.email]],
       'phoneNumber': [['']],
