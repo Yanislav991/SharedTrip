@@ -8,7 +8,7 @@ import { TripsService } from 'src/services/trips.service';
   templateUrl: './trips.component.html',
   styleUrls: ['./trips.component.scss']
 })
-export class TripsComponent implements OnInit{
+export class TripsComponent implements OnInit {
   @ViewChild('search') search: any;
   public tripsRecords!: Array<ITrip>;
   public recordsPages!: Array<number>;
@@ -38,8 +38,17 @@ export class TripsComponent implements OnInit{
     this.search.nativeElement.value = ' '
     this.loadData();
   }
-  filterByValue(array: any, value: any) {
-    return array.filter((data: any) => JSON.stringify(data).toLowerCase().indexOf(value.toLowerCase()) !== -1);
+  filterByValue(array: any, string: string) {
+    //@ts-ignore
+    return array.filter(x => {
+      var values = Object.values(x);
+      for (const curr of values) {
+        if(String(curr).includes(string)){
+          return true;
+        }
+      }
+      return false;
+    })
   }
   sortData(event: MouseEvent) {
     let element = event.target as HTMLElement;

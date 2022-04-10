@@ -13,7 +13,7 @@ export class AuthService {
   private getUserTripId = environment.apiUrl + 'api/trip/userId/'
   private editUserPath = environment.apiUrl + 'api/user/edit';
   private getUserProfile = environment.apiUrl + 'api/user/get/'
-  private headers = new HttpHeaders({ 'Authorization': `Bearer ${this.getToken()}` });
+
   constructor(private http: HttpClient) { }
   login(data: any): Observable<any> {
     return this.http.post(this.loginPath, data)
@@ -31,12 +31,12 @@ export class AuthService {
     return localStorage.getItem('token')?? '';
   }
   isOwner(id: string | null): Promise<any> {
-   return firstValueFrom(this.http.get(this.getUserTripId + id, {headers:this.headers}))
+   return firstValueFrom(this.http.get(this.getUserTripId + id))
   }
   getUser():Observable<IProfile>{
-    return this.http.get<IProfile>(this.getUserProfile, {headers:this.headers})
+    return this.http.get<IProfile>(this.getUserProfile)
   }
   updateUser(data: any): Observable<any> {
-    return this.http.post(this.editUserPath, data, { headers: this.headers })
+    return this.http.post(this.editUserPath, data)
   }
 }

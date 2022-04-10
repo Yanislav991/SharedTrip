@@ -33,7 +33,7 @@ export class CreateTripComponent implements OnInit {
       return;
     }
     this.trips.create(this.createTripForm.value).subscribe(s => {
-      console.log(s);
+      this.router.navigate(['./trips/all'])
     })
   }
 

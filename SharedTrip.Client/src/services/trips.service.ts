@@ -1,9 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ITrip } from 'src/interfaces/ITrip';
-import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,23 +13,21 @@ export class TripsService {
   deleteTripsPath = environment.apiUrl + 'api/trip/delete';
   savePlaceTripsPath = environment.apiUrl + 'api/trip/savePlace';
   getDetailsTripPath = environment.apiUrl + 'api/trip/details/';
-  token: string = this.auth.getToken();
-  headers = new HttpHeaders({ 'Authorization': `Bearer ${this.token}` });
 
-  constructor(private http: HttpClient, private auth: AuthService) { }
+  constructor(private http: HttpClient) { }
   getAllTrips(): Observable<any> {
-    return this.http.get(this.allTripsPath, { headers: this.headers })
+    return this.http.get(this.allTripsPath)
   }
   getTripById(id: number): Observable<any> {
-    return this.http.get(this.getDetailsTripPath + id, { headers: this.headers })
+    return this.http.get(this.getDetailsTripPath + id)
   }
   create(data: any): Observable<any> {
-    return this.http.post(this.createTripsPath, data, { headers: this.headers })
+    return this.http.post(this.createTripsPath, data)
   }
   edit(data: any): Observable<any> {
-    return this.http.put(this.editTripsPath, data, { headers: this.headers })
+    return this.http.put(this.editTripsPath, data)
   }
   delete(data: any): Observable<any> {
-    return this.http.delete(this.deleteTripsPath, { headers: this.headers, body: data })
+    return this.http.delete(this.deleteTripsPath)
   }
 }
