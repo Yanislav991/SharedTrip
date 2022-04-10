@@ -1,19 +1,41 @@
-<section class="home">
-    <h2 class="home-head">Lorem ipsum dolor sit amet.</h2>
-    <br>
-    <br>
-    <p class="home-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt enim, laboriosam magnam deleniti illo reiciendis voluptas eum ipsum hic itaque.</p>
-    <br>
-    <br>
-    <p class="home-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam eligendi ea reprehenderit nulla nisi perspiciatis minus unde incidunt earum nostrum? Nesciunt expedita cumque molestiae quidem repudiandae sit corrupti quod veniam!</p>
-    <section class="auth">
-        <section class="log">
-            <span>Login to contininue</span>
-            <button id="login">Login</button>
-        </section>
-        <section class="reg">
-            <span>Join our community</span>
-            <button id="register">Register</button>
+<div class="main">
+    <section class="home">
+        <h2 class="home-head">Lorem ipsum dolor sit amet.</h2>
+        <br>
+        <br>
+        <p class="home-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt enim, laboriosam magnam deleniti illo reiciendis voluptas eum ipsum hic itaque.</p>
+        <br>
+        <br>
+        <p class="home-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam eligendi ea reprehenderit nulla nisi perspiciatis minus unde incidunt earum nostrum? Nesciunt expedita cumque molestiae quidem repudiandae sit corrupti quod veniam!</p>
+        <section class="auth">
+            <section class="log">
+                <span>Login to contininue</span>
+                <button id="login">Login</button>
+            </section>
+            <section class="reg">
+                <span>Join our community</span>
+                <button id="register">Register</button>
+            </section>
         </section>
     </section>
-</section>
+    <section *ngIf="this.isDataLoaded" class="statistics-weather">
+        <h5 class="header">Weather in : {{weatherData.name}} {{weatherData.sys.country}}</h5>
+        <p class="desc">{{weatherData.weather[0].description.toUpperCase()}}</p>
+        <figure>
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="chart" width="420" height="150" aria-labelledby="title" role="img">
+            <g class="bar">
+              <rect [style.width.px]="weatherData.main.temp_min + 50" height="19"></rect>
+              <text x="75" y="9.5" dy=".35em">Min temperature {{weatherData.main.temp_min}}°C </text>
+            </g>
+            <g class="bar">
+              <rect [style.width.px]="weatherData.main.temp + 50" height="19" y="20"></rect>
+              <text x="75" y="28" dy=".35em">Current temperature {{weatherData.main.temp}}°C</text>
+            </g>
+            <g class="bar">
+              <rect [style.width.px]="weatherData.main.temp_max + 50" height="19" y="40"></rect>
+              <text x="75" y="48" dy=".35em">Max Temperature {{weatherData.main.temp_max}}°C</text>
+            </g>
+          </svg>
+        </figure>
+    </section>
+</div>

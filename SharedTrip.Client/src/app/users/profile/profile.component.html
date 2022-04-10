@@ -1,4 +1,4 @@
-<section class="profile">
+<section *ngIf="isDataLoaded" class="profile">
     <section class="user-info">
         <div class="img-container">
             <img [src]="profile.avatarUrl ">

@@ -11,7 +11,6 @@ export class UserInfoComponent implements OnInit {
   constructor() { }
   @Input() profile!: IProfile
   ngOnInit(): void {
-    console.log(this.profile)
   }
 
 }

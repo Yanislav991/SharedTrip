@@ -10,31 +10,34 @@ import { SharedService } from 'src/services/shared.service';
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent implements OnInit {
-  loginForm:FormGroup;
-  constructor( private fb: FormBuilder,private shared:SharedService, private auth:AuthService, private router:Router) {
-    this.loginForm=this.fb.group({
-      'username':[[''], [Validators.required]],
-      'password':[[''], [Validators.required, Validators.minLength(6)]]
+  loginForm: FormGroup;
+  constructor(private fb: FormBuilder, private shared: SharedService, private auth: AuthService, private router: Router) {
+    this.loginForm = this.fb.group({
+      'username': [[''], [Validators.required]],
+      'password': [[''], [Validators.required, Validators.minLength(6)]]
     });
-   }
+  }
 
   ngOnInit(): void {
   }
-  login(){
-    if(!this.loginForm.valid){
+  login() {
+    if (!this.loginForm.valid) {
       this.shared.fireValidation(this.loginForm);
       return;
     }
-    this.auth.login(this.loginForm.value).subscribe(data=>{
-      this.auth.saveToken(data.token)
-      this.router.navigate(['/trips/all'])
+    this.auth.login(this.loginForm.value).subscribe({
+      next: (data) => { this.auth.saveToken(data.token) },
+      complete: () => { 
+        console.log(localStorage)
+        this.router.navigate(['/trips/all']) 
+      }
     })
   }
-  
-  get username(){
+
+  get username() {
     return this.loginForm.get('username')
   }
-  get password(){
+  get password() {
     return this.loginForm.get('password')
   }
 }

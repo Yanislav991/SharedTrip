@@ -19,24 +19,16 @@ export class TripDetailsComponent implements OnInit {
     this.ar.params.subscribe(p => {
       let id = p['id'];
       this.trips.getTripById(id).subscribe({
-        next: (trip) => { 
+        next: (trip) => {
           this.currTrip = trip;
-          this.auth.isOwner(this.currTrip.id.toString()).then(x=>{
+          this.auth.isOwner(this.currTrip.id.toString()).then(x => {
             this.isOwner = x.isOwner
-          }) 
+          })
         },
-        error: (err) => { alert("Application problem!") },
-        complete: () => { console.log('complete') }
+        error: (err) => { alert("Application problem!") }
       })
     })
   }
-
-  // this.trips.getTripById(id).subscribe(trip => {
-  //   this.currTrip = trip;
-  //   this.auth.isOwner(this.currTrip.id.toString()).then(x => {
-  //     this.isOwner = x.isOwner;
-  //   })
-  // })
 
   deleteTrip() {
     if (this.isOwner) {
@@ -51,5 +43,7 @@ export class TripDetailsComponent implements OnInit {
       this.router.navigate(['/trips/all'])
     }
   }
-
+  get isDataLoaded() {
+    return this.currTrip != null;
+  }
 }

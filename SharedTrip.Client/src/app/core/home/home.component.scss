@@ -1,3 +1,50 @@
+.bar {
+    fill: var(--text);
+    height: 21px;
+    margin: 10px;
+    transition: fill .3s ease;
+    cursor: pointer;
+    font-family: Helvetica, sans-serif;
+    text {
+        fill: var(--text);
+    }
+}
+
+.main {
+    display: flex;
+    align-items: center;
+}
+
+.statistics-weather {
+    text-align: left;
+    width: 25%;
+    align-items: center;
+    padding: 3rem;
+    background-color: var(--action-trans);
+    border-radius: 18px;
+}
+
+.chart:hover,
+.chart:focus {
+    .bar {
+        fill: var(--text);
+    }
+}
+
+.bar:hover,
+.bar:focus {
+    fill: var(--action) !important;
+    text {
+        fill: var(--text);
+    }
+}
+
+figcaption {
+    font-weight: bold;
+    color: var(--text);
+    margin-bottom: 20px;
+}
+
 .home {
     width: 60%;
     margin: 2rem 2rem;
